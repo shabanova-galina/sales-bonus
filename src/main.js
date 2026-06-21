@@ -36,11 +36,13 @@ function analyzeSalesData(data, options) {
         calculateBonus = calculateBonusByProfit
     } = options || {};
 
-    if (options) {
-        if (!calculateRevenue || !calculateBonus) {
-        throw new Error('Чего-то не хватает');
-        }
-    } 
+    if (typeof calculateRevenue !== 'function') {
+        throw new Error('calculateRevenue должна быть функцией');
+    }
+    if (typeof calculateBonus !== 'function') {
+        throw new Error('calculateBonus должна быть функцией');
+    }
+
     const sellerStats = data.sellers.map(seller => {
         return {
         seller_id: seller.id,
