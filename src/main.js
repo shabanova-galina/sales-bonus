@@ -36,8 +36,10 @@ function analyzeSalesData(data, options) {
         calculateBonus = calculateBonusByProfit
     } = options || {};
 
-    if (!calculateRevenue || !calculateBonus) {
+    if (options) {
+        if (!calculateRevenue || !calculateBonus) {
         throw new Error('Чего-то не хватает');
+        }
     } 
     const sellerStats = data.sellers.map(seller => {
         return {
