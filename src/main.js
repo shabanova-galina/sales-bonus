@@ -31,10 +31,11 @@ function analyzeSalesData(data, options) {
     throw new Error('Некорректные входные данные');
     } 
 
-    const {
-        calculateRevenue = calculateSimpleRevenue,
-        calculateBonus = calculateBonusByProfit
-    } = options || {};
+    if (!options) {
+        throw new Error('Чего-то не хватает');
+    }
+
+    const { calculateRevenue, calculateBonus } = options;
 
     if (typeof calculateRevenue !== 'function') {
         throw new Error('calculateRevenue должна быть функцией');
